@@ -1,0 +1,4 @@
+name: RuskyAntiHackerBungee
+version: '${project.version}'
+main: me.redstoneexpert.ruskyantihacker.bungee.Main
+description: Another proxy firewall plugin.
