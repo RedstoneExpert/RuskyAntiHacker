@@ -1,6 +1,6 @@
 name: RuskyAntiHackerSpigot
 version: '${project.version}'
 main: me.redstoneexpert.ruskyantihacker.spigot.Main
-api-version: 1.17
+api-version: 1.16
 authors: [ RedstoneExpert ]
 description: Another proxy firewall plugin.
