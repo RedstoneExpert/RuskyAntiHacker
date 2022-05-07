@@ -81,5 +81,10 @@
             <artifactId>NMS17</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>me.RedstoneExpert.RuskyAntiHacker</groupId>
+            <artifactId>NMS16</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

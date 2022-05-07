@@ -1,5 +1,6 @@
 package me.redstoneexpert.ruskyantihacker.spigot;
 
+import me.redstoneexpert.ruskyantihacker.nms16.NMS16;
 import me.redstoneexpert.ruskyantihacker.nms17.NMS17;
 import me.redstoneexpert.ruskyantihacker.nmsabstract.NMSUtils;
 import me.redstoneexpert.ruskyantihacker.spigot.Events.onLogin;
@@ -25,6 +26,7 @@ public class Main extends JavaPlugin {
 
 		switch (VersionUtils.getVersion()) {
 			case "v1_17_R1" -> nmsUtils = new NMS17();
+			case "v1_16_R1" -> nmsUtils = new NMS16();
 			default -> throw new UnsupportedClassVersionError();
 		}
 
