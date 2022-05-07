@@ -15,7 +15,7 @@ public class NMS16 implements NMSUtils {
 
 	@SuppressWarnings("unchecked")
 	public NetworkManager getNetworkManager(Player p) {
-		List<NetworkManager> managers = (List<NetworkManager>) ReflectionUtils.getValue(Objects.requireNonNull(((CraftServer) Bukkit.getServer()).getServer().getServerConnection()), "g");
+		List<NetworkManager> managers = (List<NetworkManager>) ReflectionUtils.getValue(Objects.requireNonNull(((CraftServer) Bukkit.getServer()).getServer().getServerConnection()), "connectedChannels");
 		assert managers != null;
 		for (NetworkManager manager: managers) {
 			if (manager.spoofedUUID == p.getUniqueId()) {
