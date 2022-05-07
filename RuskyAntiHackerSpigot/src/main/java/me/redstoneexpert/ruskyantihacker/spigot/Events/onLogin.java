@@ -24,19 +24,24 @@ public class onLogin implements Listener {
 		return new String(EncryptionUtils.decrypt(Base64.getDecoder().decode(property.sig()))).equals("Signature: " + Bukkit.getServer().getPort() + ";" + property.val());
 	}
 
-	private void kick(PlayerLoginEvent e, int i, Property p) throws GeneralSecurityException {
-		byte[] newKey = TCPUtils.getKey();
-		if (!Arrays.equals(Main.key.getEncoded(), newKey)) {
-			Main.key = EncryptionUtils.getPubKey(newKey);
+	private void kick(PlayerLoginEvent e, int i, Property p) {
+		new Thread(() -> {
 			try {
-				if (checkSignature(p)) {
-					Main.lastId = i;
-					e.setResult(PlayerLoginEvent.Result.ALLOWED);
-					return;
+				byte[] newKey = TCPUtils.getKey();
+				if (!Arrays.equals(Main.key.getEncoded(), newKey)) {
+					Main.key = EncryptionUtils.getPubKey(newKey);
+					try {
+						if (checkSignature(p)) {
+							Main.lastId = i;
+						}
+					} catch (BadPaddingException ignored) {
+					}
 				}
-			} catch (BadPaddingException ignored) {}
-		}
-		e.setKickMessage("Bad id or signature");
+			} catch (GeneralSecurityException ex) {
+				ex.printStackTrace();
+			}
+		}).start();
+		e.setKickMessage("Bad id or signature (try rejoining)");
 	}
 
 	@EventHandler
@@ -62,7 +67,7 @@ public class onLogin implements Listener {
 						e.setKickMessage("RSA error");
 						ex.printStackTrace();
 					}
-				} catch (NumberFormatException | GeneralSecurityException ignored) {
+				} catch (NumberFormatException ignored) {
 					e.setKickMessage("Bad id format");
 				}
 			} else {
