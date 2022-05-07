@@ -26,8 +26,8 @@ public class Main extends JavaPlugin {
 
 		switch (VersionUtils.getVersion()) {
 			case "v1_17_R1" -> nmsUtils = new NMS17();
-			case "v1_16_R1" -> nmsUtils = new NMS16();
-			default -> throw new UnsupportedClassVersionError();
+			case "v1_16_R3" -> nmsUtils = new NMS16();
+			default -> throw new UnsupportedClassVersionError(VersionUtils.getVersion());
 		}
 
 		saveDefaultConfig();
