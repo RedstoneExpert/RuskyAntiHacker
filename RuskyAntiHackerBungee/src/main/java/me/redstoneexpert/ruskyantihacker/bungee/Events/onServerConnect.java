@@ -29,6 +29,7 @@ public class onServerConnect implements Listener {
 			cipher.init(Cipher.ENCRYPT_MODE, EncryptionUtil.keys.getPrivate());
 			LoginResult loginProfile = ((InitialHandler) e.getPlayer().getPendingConnection()).getLoginProfile();
 			List<LoginResult.Property> properties = Arrays.stream(loginProfile.getProperties()).collect(Collectors.toList());
+			properties.removeIf(property -> property.getName().equals("sessionId"));
 			byte[] sign = cipher.doFinal(("Signature: " + e.getTarget().getAddress().getPort() + ";" + Main.sessionId).getBytes(StandardCharsets.UTF_8));
 			properties.add(new LoginResult.Property("sessionId", Integer.toString(Main.sessionId), Base64.getEncoder().encodeToString(sign)));
 			Main.sessionId++;
