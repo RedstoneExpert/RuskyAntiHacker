@@ -8,6 +8,7 @@
         <module>NMSAbstract</module>
         <module>NMS17</module>
         <module>NMS16</module>
+        <module>NMS18</module>
     </modules>
 
     <groupId>me.RedstoneExpert.RuskyAntiHacker</groupId>
