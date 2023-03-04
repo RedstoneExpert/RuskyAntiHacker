@@ -28,6 +28,7 @@ public class NMS18 implements NMSUtils {
 	@Override
 	public Property getSignature(Player player) {
 		com.mojang.authlib.properties.Property[] props = getNetworkManager(player).spoofedProfile;
+		if (props == null) return  null;
 		for (com.mojang.authlib.properties.Property prop : props) {
 			if (prop.getName().equals("sessionId")) {
 				return new Property(prop.getValue(), prop.getSignature());
